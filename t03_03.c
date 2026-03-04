@@ -1,4 +1,4 @@
-#include <stdio.h>  // Diperlukan untuk fungsi input/output seperti printf dan scanf
+#include <stdio.h>  // Diperlukan untuk fungsi input/output seperti scanf dan printf
 #include <float.h>  // Diperlukan untuk DBL_MAX dan DBL_MIN, nilai double terbesar/terkecil untuk inisialisasi
 
 int main() {
@@ -11,28 +11,23 @@ int main() {
     double min_avg = DBL_MAX; // Variabel untuk menyimpan rata-rata terendah, diinisialisasi dengan nilai maksimum double
     double max_avg = DBL_MIN; // Variabel untuk menyimpan rata-rata tertinggi, diinisialisasi dengan nilai minimum double
     
-    printf("Selamat datang di program pencari nilai Min/Max dan Rata-rata Berurutan!\n");
-    printf("--------------------------------------------------------------------------------\n");
-    printf("Masukkan jumlah baris masukan berikutnya (n): ");
-    scanf("%d", &n); // Membaca nilai n dari pengguna
+    // Membaca nilai n dari pengguna, tanpa prompt
+    scanf("%d", &n); 
 
     // Validasi sederhana untuk n
     if (n <= 0) {
-        printf("Jumlah masukan (n) harus bilangan bulat positif.\n");
-        return 1; // Mengakhiri program dengan kode error
+        // Jika n tidak valid, program keluar tanpa output apa pun sesuai permintaan 'tidak ada kata kata lain'
+        return 1; 
     }
 
-    // Membaca bilangan pertama untuk inisialisasi
-    printf("Masukkan bilangan ke-1: ");
+    // Membaca bilangan pertama untuk inisialisasi, tanpa prompt
     scanf("%d", &num);
     min_val = num;     // Inisialisasi min_val dengan bilangan pertama
     max_val = num;     // Inisialisasi max_val dengan bilangan pertama
     prev_num = num;    // Simpan bilangan pertama sebagai prev_num
 
-    // Memulai loop untuk membaca (n-1) bilangan berikutnya
-    // Rata-rata hanya dihitung jika ada setidaknya dua bilangan
+    // Memulai loop untuk membaca (n-1) bilangan berikutnya, tanpa prompt
     for (int i = 1; i < n; i++) {
-        printf("Masukkan bilangan ke-%d: ", i + 1);
         scanf("%d", &num); // Membaca setiap bilangan
 
         // Logika pencarian nilai terkecil
@@ -59,19 +54,16 @@ int main() {
         prev_num = num; // Perbarui prev_num untuk iterasi berikutnya
     }
 
-    // Menampilkan hasil sesuai spesifikasi
-    printf("\n--------------------------------------------------------------------------------\n");
-    printf("Hasil:\n");
-    printf("Nilai terkecil: %d\n", min_val);
-    printf("Nilai terbesar: %d\n", max_val);
+    // Menampilkan hasil sesuai spesifikasi, hanya nilai numerik
+    printf("%d\n", min_val);
+    printf("%d\n", max_val);
     
     // Tampilkan rata-rata hanya jika n >= 2
     if (n >= 2) {
-        printf("Rata-rata terendah dari dua nilai berurutan: %.2f\n", min_avg);
-        printf("Rata-rata tertinggi dari dua nilai berurutan: %.2f\n", max_avg);
-    } else {
-        printf("Tidak cukup bilangan untuk menghitung rata-rata dua nilai berurutan.\n");
+        printf("%.2f\n", min_avg);
+        printf("%.2f\n", max_avg);
     }
+    // Jika n < 2, tidak ada output untuk rata-rata, sesuai permintaan 'tidak ada kata kata lain'
 
     return 0; // Mengindikasikan program berhasil dieksekusi
 }
